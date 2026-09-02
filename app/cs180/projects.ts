@@ -88,8 +88,8 @@ export const projects: Project[] = [
         ],
         columns: 2,
         media: [
-          { type: "image", src: "/cs180/1115.jpg", alt: "Selfie taken close to the camera", caption: "Close to the camera" },
-          { type: "image", src: "/cs180/1117.jpg", alt: "Selfie taken farther from the camera", caption: "Farther away" },
+          { type: "image", src: "/cs180/1115.jpg", alt: "Selfie taken close to the camera", caption: "Close to the camera — features exaggerated" },
+          { type: "image", src: "/cs180/1117.jpg", alt: "Selfie taken farther from the camera", caption: "Farther away — proportions flatten" },
         ],
       },
       {

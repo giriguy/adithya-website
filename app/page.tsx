@@ -4,7 +4,7 @@ import Link from "next/link"
 import { LinkOut, SiteHeader, SiteFooter } from "@/components/site-chrome"
 
 export default function Home() {
-  const text = ["\t I'm an EECS student at UC Berkeley working on making large models faster and more data efficient — attention mechanisms, mixture-of-experts routing, and agentic systems.", "I love playing basketball and hiking when I'm not breaking my computer training large, cool and new models."]
+  const text = ["\t I'm a Machine Learning Student with a focus on Attention-Based Networks and Computer Vision.", "I love playing basketball and hiking when I'm not breaking my computer training large, cool and new models."]
   return (
     <div>
       <div className="flex justify-center mt-5">

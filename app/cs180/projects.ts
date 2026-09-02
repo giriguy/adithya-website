@@ -74,22 +74,17 @@ export type Project = {
 export const projects: Project[] = [
   {
     id: "proj1",
-    label: "Project 1",
-    title: "Perspective, Distortion, and Compression",
+    label: "Project 0",
+    title: "Becoming Friends with Your Camera",
     summary: "Shooting the same subject from different distances and focal lengths.",
     description: [
-      "Photographs taken to show how camera distance changes the apparent shape of a "
-        + "subject. Moving closer and zooming out exaggerates depth; backing up and "
-        + "zooming in flattens it, even though the subject fills the frame the same way.",
     ],
     parts: [
       {
         id: "selfie",
-        title: "Selfie: distance and facial distortion",
+        title: "Part 1: Selfie: The Wrong Way vs. The Right Way",
         description: [
-          "The same face photographed up close and from farther away. Up close, the "
-            + "nose and forehead are noticeably enlarged relative to the ears; from a "
-            + "distance the proportions flatten out.",
+          "The same face photographed up close and from farther away."
         ],
         columns: 2,
         media: [
@@ -98,31 +93,31 @@ export const projects: Project[] = [
         ],
       },
       {
+        id: "architecture",
+        title: "Part 2: Architectural Perspective Compression",
+        description: [
+          "Photo taken farther away zoomed and close up to show that building appears flatter as you zoom out."
+        ],
+        columns: 2,
+        media: [
+          { type: "image", src: "/cs180/1130.jpg", caption: "ASUC Building close up"},
+          { type: "image", src: "/cs180/1129.jpg", caption: "ASUC Building with zoom" },
+          
+          { type: "image", src: "/cs180/1131.jpg", caption: "Wheeler hall close up"},
+          { type: "image", src: "/cs180/1132.jpg", caption: "Wheeler hall with zoom"},
+        ],
+      },
+      {
         id: "compression",
-        title: "Perspective compression",
+        title: "Part 3: Dolly Zoom (Vertigo) Effect",
         description: [
           "The same bottle shot from increasing distances, zooming in each time to keep "
-            + "it roughly the same size in frame. As distance grows, the background "
-            + "appears to compress toward the subject.",
+            + "item roughly the same size in frame. As distance grows, the background "
+            + "appears to compress toward the subject due to the Field of View decreasing.",
         ],
         columns: 1,
         media: [
           { type: "image", src: "/cs180/compression.gif", alt: "Animation cycling through the bottle photographed at increasing distances", caption: "Cycling through the sequence, closest to furthest — the background compresses toward the bottle", maxHeight: 380 },
-        ],
-      },
-      {
-        id: "architecture",
-        title: "Architecture at night",
-        description: [
-          "Campus buildings after dark, shot to play converging vertical lines and "
-            + "artificial light against the remaining blue in the sky.",
-        ],
-        columns: 2,
-        media: [
-          { type: "image", src: "/cs180/1129.jpg", alt: "Modern campus building at night, viewed from the corner", caption: "Corner view" },
-          { type: "image", src: "/cs180/1130.jpg", alt: "The same building from a lower angle", caption: "Lower angle" },
-          { type: "image", src: "/cs180/1131.jpg", alt: "Neoclassical campus building lit at dusk", caption: "Dusk" },
-          { type: "image", src: "/cs180/1132.jpg", alt: "Campus building with the Campanile behind it", caption: "Campanile behind" },
         ],
       },
     ],

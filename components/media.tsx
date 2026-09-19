@@ -1,6 +1,6 @@
 import type { Media } from "@/app/cs180/projects"
 
-/* Renders the media described in app/cs180/projects.ts. */
+/* Renders the media described in app/cs180/projects/*.ts. */
 
 const gridCols: Record<number, string> = {
   // Spelled out so Tailwind's scanner sees the full class names.
@@ -37,9 +37,13 @@ function MediaFigure({ item }: { item: Media }) {
           playsInline={item.autoplay}
         />
       )}
-      {item.caption && (
+      {(item.caption || (item.writeup && item.writeup.length > 0)) && (
         <figcaption className="mt-1 text-base font-normal text-muted-foreground">
           {item.caption}
+          {/* Per-image write-up: notes, offsets, what went wrong. */}
+          {item.writeup?.map((paragraph, i) => (
+            <p key={i} className={item.caption || i > 0 ? "mt-1" : ""}>{paragraph}</p>
+          ))}
         </figcaption>
       )}
     </figure>

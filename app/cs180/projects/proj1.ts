@@ -68,6 +68,9 @@ export const proj1: Project = {
       title: "High-resolution plates (.tif)",
       description: [
         "The full-resolution scans are far too large for an exhaustive search, so at each level of the image pyramid you find the best fit and then scale the offset up. The recurrence relation is described as follows: best_fit(img1, img2, try_amt, margin) = max image correlation for all i, j in {-try_amt, try_amt}, between ref image and image with offsets [2*best_fit(img1_downsampled, img2_downsampled, try_amt, margin/2)[0] + i, 2*best_fit(img1_downsampled, img2_downsampled, try_amt, margin/2)[0] + j]. More intuitively, this just states the best offset is the best similarity when trying try_amt shifts in the positive and negative direction and staring with and offset of (downsampled_offset times 2). Another important method is the downsampling itself. I use gaussian blurring to downsample properly with a filter size of 7. After intitial tests with this method I found that it didn't work amazingly, since the simlarity function was between the whole image. The red, green and blue might not be as similar as their edges. Hence, I applied a trick of passing the images through an x edge detector, a y edge detector and then taking the sum of their squared magnitude to get a gradient magnitude map over each channel. The similarity of this gradient magnitude map led to much better results with almost all images being near perfectly aligned across channels. ",
+        "The last three plates below — ItalianMonastery, GundukushDam, and MoreFlowers — "
+          + "are extra scans I picked from the Library of Congress Prokudin-Gorskii "
+          + "archive and ran through the same pipeline.",
       ],
       columns: 2,
       media: [
@@ -127,17 +130,6 @@ export const proj1: Project = {
           caption: "three_generations",
           writeup: [],
         },
-      ],
-    },
-    {
-      id: "extra-plates",
-      title: "Additional plates from the collection",
-      description: [
-        "A few more scans pulled from the Library of Congress Prokudin-Gorskii archive "
-          + "and run through the same pipeline.",
-      ],
-      columns: 2,
-      media: [
         {
           type: "image",
           src: "/cs180/proj1/ilemselga.jpg",
@@ -157,6 +149,28 @@ export const proj1: Project = {
           src: "/cs180/proj1/wharf.jpg",
           alt: "Colorized wharf plate",
           caption: "wharf",
+          writeup: [],
+        },
+        // Extra scans I picked from the Library of Congress archive.
+        {
+          type: "image",
+          src: "/cs180/proj1/ItalianMonastery.jpg",
+          alt: "Colorized Italian monastery plate",
+          caption: "ItalianMonastery",
+          writeup: [],
+        },
+        {
+          type: "image",
+          src: "/cs180/proj1/GundukushDam.jpg",
+          alt: "Colorized Gundukush dam plate",
+          caption: "GundukushDam",
+          writeup: [],
+        },
+        {
+          type: "image",
+          src: "/cs180/proj1/MoreFlowers.jpg",
+          alt: "Colorized flowers plate",
+          caption: "MoreFlowers",
           writeup: [],
         },
       ],

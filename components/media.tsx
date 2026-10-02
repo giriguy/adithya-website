@@ -1,4 +1,5 @@
 import type { Media } from "@/app/cs180/projects"
+import { assetPath } from "@/lib/asset-path"
 
 /* Renders the media described in app/cs180/projects/*.ts. */
 
@@ -19,15 +20,15 @@ function MediaFigure({ item }: { item: Media }) {
     <figure className="m-0">
       {item.type === "image" ? (
         <img
-          src={item.src}
+          src={assetPath(item.src)}
           alt={item.alt ?? ""}
           className={fit}
           style={style}
         />
       ) : (
         <video
-          src={item.src}
-          poster={item.poster}
+          src={assetPath(item.src)}
+          poster={item.poster ? assetPath(item.poster) : undefined}
           className={fit}
           style={style}
           controls={!item.autoplay}

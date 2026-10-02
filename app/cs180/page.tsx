@@ -3,6 +3,7 @@ import Link from "next/link"
 import { Card, CardHeader, CardTitle } from "@/components/ui/card"
 import { CS180Header } from "./header"
 import { coverOf, projects } from "./projects"
+import { assetPath } from "@/lib/asset-path"
 
 export const metadata: Metadata = {
   title: "CS 180 | Adithya Giri",
@@ -33,7 +34,7 @@ export default function CS180() {
                       <div className="flex items-start gap-4">
                         {cover && (
                           <img
-                            src={cover}
+                            src={assetPath(cover)}
                             alt=""
                             className="hidden sm:block w-32 h-24 object-cover rounded-sm shadow-md shrink-0"
                           />

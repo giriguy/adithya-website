@@ -1,14 +1,15 @@
 import type { Project } from "./types"
 import { proj0 } from "./proj0"
 import { proj1 } from "./proj1"
+import { proj2 } from "./proj2"
 
-export type { Media, Part, Project } from "./types"
+export type { Media, Part, PartGroup, Placeholder, Project } from "./types"
 
 /*
  * Every project that should appear on /cs180, in the order shown there.
  * Each entry also becomes its own page at /cs180/<id>.
  */
-export const projects: Project[] = [proj0, proj1]
+export const projects: Project[] = [proj0, proj1, proj2]
 
 export function getProject(id: string): Project | undefined {
   return projects.find((project) => project.id === id)

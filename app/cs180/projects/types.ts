@@ -67,6 +67,24 @@ export type Media = {
   maxHeight?: number
 }
 
+export type Placeholder = {
+  /** Short label shown at the top of an unfinished deliverable slot. */
+  title: string
+  /** What belongs here; doubles as a checklist while authoring. */
+  prompt: string
+  /** Gives code and prose slots a slightly different visual treatment. */
+  kind?: "image" | "code" | "writeup"
+}
+
+export type PartGroup = {
+  /** Optional anchor for linking directly to a result group. */
+  id?: string
+  title: string
+  description?: string[]
+  media?: Media[]
+  columns?: 1 | 2 | 3
+}
+
 export type Part = {
   /** Anchor id, e.g. "gaussian-stack" -> /cs180/proj2#gaussian-stack. Optional. */
   id?: string
@@ -75,6 +93,11 @@ export type Part = {
   description?: string[]
   media?: Media[]
   columns?: 1 | 2 | 3
+  /** Visible authoring slots for results that have not been added yet. */
+  placeholders?: Placeholder[]
+  placeholderColumns?: 1 | 2 | 3
+  /** Named result groups keep large projects from becoming one undifferentiated gallery. */
+  groups?: PartGroup[]
 }
 
 export type Project = {

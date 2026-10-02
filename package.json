@@ -2,11 +2,11 @@
   "name": "adithya-website",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://AdiGisthebest.github.io/adithya-website",
+  "homepage": "https://giriguy.github.io/adithya-website",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
-    "deploy": "next build && gh-pages -d out",
+    "deploy": "GITHUB_ACTIONS=true next build && gh-pages -d out",
     "start": "next start",
     "lint": "next lint"
   },

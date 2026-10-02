@@ -40,7 +40,7 @@ const parts: Part[] = [
     id: "part-1-2",
     title: "Part 1.2:  Finite Difference Operator",
     description: [
-      "I computed the horizontal and vertical derivatives of the cameraman image using 3 ny 3 finite-difference filters. My x filter placed [-1, 0, 1] across each row, while my y filter placed rows of -1, 0, and 1. I convolved each filter with the image using scipy.signal.convolve2d in same mode, then combined the responses as √(Dx² + Dy²) to obtain the gradient magnitude.",
+      "I computed the horizontal and vertical derivatives of the cameraman image using 3 by 3 finite-difference filters. My x filter placed [-1, 0, 1] across each row, while my y filter placed rows of -1, 0, and 1. I convolved each filter with the image using scipy.signal.convolve2d in same mode, then combined the responses as √(Dx² + Dy²) to obtain the gradient magnitude.",
       "I converted the gradient magnitude into a binary edge image with a threshold of 0.9. This selective threshold suppresses weak intensity changes and much of the grass texture while preserving the strongest outlines of the cameraman, camera, and tripod. A lower threshold retains more fine detail but introduces more clutter; a higher threshold produces a cleaner result at the cost of weaker edges.",
     ],
     groups: [
@@ -124,6 +124,7 @@ const parts: Part[] = [
       "I created a grayscale hybrid image from Derek and Nutmeg. I aligned Nutmeg to Derek with an affine transformation computed from three corresponding landmarks around the eyes and nose. This alignment placed the main facial features in similar locations so that the two frequency components formed a reasonable combined image.",
       "I extracted Derek's low-frequency component with a 25 × 25 low-pass filter and Nutmeg's high-frequency component with a 21 × 21 unsharp filter. I combined them as 0.75 × Derek-low + 1.25 × Nutmeg-high, favoring Nutmeg's detail slightly because the high-frequency component had a lower magnitude.",
       "I also computed the centered log-magnitude Fourier transform of both inputs, both filtered components, and the final hybrid. The low-pass spectrum is concentrated near the center, while the high-pass spectrum suppresses the center and retains energy farther from the origin. The hybrid spectrum contains both patterns, matching the two viewing-distance interpretations.",
+      "When I warped Nutmeg into Derek's coordinate system, I filled uncovered pixels with the median intensity sampled from Nutmeg's border. This avoids the repeated structures produced by reflected padding and gives the high-pass filter a more neutral boundary.",
       "For a second example, I aligned the happy Mr. Incredible image to the sad version with an affine transformation based on three facial landmarks. I retained the sad face at low frequencies with a 31 × 31 Gaussian filter and the happy face at high frequencies with a 21 × 21 unsharp filter, weighting the high-frequency component by 1.2.",
     ],
     groups: [
@@ -188,7 +189,7 @@ const parts: Part[] = [
     title: "Part 2.4: Multiresolution Blending",
     description: [
       "I implemented multiresolution blending by constructing six-level Laplacian stacks for two source images and a six-level Gaussian stack for their mask. At each frequency level, I multiplied the first Laplacian band by the softened mask and the second band by its complement, added the two masked bands, and reconstructed the final image by summing the blended stack. I used broader smoothing for lower frequencies and narrower smoothing for higher frequencies so the seam remained visually consistent across scales.",
-      "For the oraple, I used a vertical half-image mask to combine the apple on the left with the orange on the right. I used the same straight-seam method for a second blend between a painted landscape and a photographed landscape. Before blending, I shifted the painting 230 pixels left, cropped the photograph to 73% of its original width to remove the large foreground evergreen, resized both images to 600 by 400, and shifted the photograph down by 45 pixels so the ridgelines met more naturally.",
+      "For the oraple, I used a vertical half-image mask to combine the apple on the left with the orange on the right. For a second straight-seam example, I combined Jacques-Louis David's painting of Marat with a modern bathtub. I cropped Marat vertically, translated the painting 115 pixels right and 10 pixels down to align his head and torso with the tub, cropped 115 pixels from the left of both images, and then applied the same six-level blend with a vertical mask.",
       "For my irregular-mask result, I aligned my face to Andrew Garfield's face using an affine transformation based on corresponding eye and nose landmarks. I drew a polygonal face mask, matched the aligned face's per-channel mean and standard deviation to Andrew's lighting, and blended the images with six Laplacian levels and a 21-pixel base filter.",
     ],
     groups: [
@@ -204,13 +205,13 @@ const parts: Part[] = [
         ],
       },
       {
-        title: "Painted + photographed landscape",
-        description: ["I aligned the ridgelines before applying the same straight-seam multiresolution blend."],
+        title: "Marat + bathtub",
+        description: ["After aligning and cropping the two inputs, I used a vertical mask so the historical figure transitions smoothly into the modern bathtub."],
         columns: 3,
         media: [
-          input("landscape_left.png", "Painted landscape"),
-          input("landscape_right.png", "Photographed landscape"),
-          output("part2_4_landscape_blend.png", "Final landscape blend"),
+          input("marat.png", "Marat painting input"),
+          input("bathtub.png", "Bathtub input"),
+          output("part2_4_marat_bathtub_blend.png", "Final Marat + bathtub blend"),
         ],
       },
       {
